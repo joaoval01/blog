@@ -1,0 +1,29 @@
+<div class="card-body px-0 pb-2">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0">
+            <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+                <%= link_to new_category_path, class: 'btn' do %>
+                    novo
+                <% end %>
+                </tr> 
+            </thead>
+            <tbody>
+            <% @categories.each do |category| %>
+                <tr>
+                    <td>
+                    <div class="d-flex px-2">
+                        <div class="my-auto">
+                            <h6 class="mb-0 text-sm"><%= category.name %></h6>
+                            <%= link_to 'Editar', edit_category_path(id: category.id), class: 'btn' %>
+                            <%= link_to 'Deletar', category_path(id: category.id), method: :delete, class: 'btn' %>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>

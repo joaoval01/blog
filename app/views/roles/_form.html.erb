@@ -1,0 +1,7 @@
+<div class='h-100'>
+    <%= form_with  model: @role do |form| %>
+        <%= form.text_field :username, class:'form-control' %>
+        <%= form.submit 'Salvar', class:'btn' %>
+        <%= link_to 'Cancelar', roles_path, class:'btn' %>
+    <% end %>
+</div>
