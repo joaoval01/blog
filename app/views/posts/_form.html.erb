@@ -1,0 +1,13 @@
+<div style='height: 1000px'>
+    <div class="w-100% justify-content-center">
+        <%= form_with  model: @post do |form| %>
+            <%= form.text_field :name, class:'form-control m-20' %>
+            <%= form.text_area :summary, class:'form-control' %>
+            <%= form.text_area :content, class:'form-control' %>
+            <%= form.select(:user_id, @users.collect {|user| [user.email, user.id]}, prompt: 'select') %>
+            <%= form.file_field :image %>
+            <%= form.submit 'Salvar', class:'btn' %>
+            <%= link_to 'Cancelar', posts_path, class:'btn' %>
+        <% end %>
+    <div>
+</div>

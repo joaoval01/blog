@@ -47,14 +47,21 @@
 </head>
   <body>
     <nav class="navbar navbar-main navbar-expand-lg bg-dark" id="navbarBlur">
+        <% if current_user %>
+          <span class= "text-light" style='font-family: Syne Mono'> <%= current_user.email %></span>
+        <% end %>
+        <%= link_to "home", root_path, class: "d-sm-inline d-none text-light", style: "font-family: Syne Mono" %>
         <div class="container-fluid py-1 px-3">
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">            
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">         
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
                 <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                    <span class="d-sm-inline d-none text-light" style='font-family: Syne Mono'>entrar</span>
+                    <% if current_user %>
+                    <%=  link_to 'editar perfil', edit_user_registration_path, class: "d-sm-inline d-none text-light" , style: "font-family: Syne Mono"%>
+                    <% else %>
+                    <%=  link_to "entrar", new_user_session_path, class: "d-sm-inline d-none text-light", style: "font-family: Syne Mono" %>
+                    <% end %>
                 </a>
                 </li>
                 </ul>
@@ -62,7 +69,11 @@
                 <li class="nav-item d-flex align-items-center">
                 <a href="javascript:;" class="nav-link text-body px-3 font-weight-bold px-0">
                     <i class="fa fa-user me-sm-1"></i>
-                    <span class="d-sm-inline d-none text-light" style='font-family: Syne Mono'>cadastre-se</span>
+                    <%if current_user %>
+                    <%=  link_to 'sair', destroy_user_session_path, method: :delete, class: "d-sm-inline d-none text-light", style: "font-family: Syne Mono"%>
+                    <%else%>
+                      <%=  link_to "cadastre-se", new_user_registration_path,class: "d-sm-inline d-none text-light", style: "font-family: Syne Mono" %>
+                    <%end %>
                 </a>
                 </li>
                 </ul>

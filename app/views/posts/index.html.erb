@@ -1,0 +1,29 @@
+<div class="card-body px-0 pb-2">
+    <div class="table-responsive p-0">
+        <table class="table align-items-center justify-content-center mb-0">
+            <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
+                <%= link_to new_post_path, class: 'btn' do %>
+                    novo
+                <% end %>
+                </tr> 
+            </thead>
+            <tbody>
+            <% @posts.each do |post| %>
+                <tr>
+                    <td>
+                    <div class="d-flex px-2">
+                        <div class="my-auto">
+                            <h6 class="mb-0 text-sm"><%= post.name %></h6><h6 class="mb-0 text-sm"><%= post.user.email %></h6>
+                            <%= link_to 'Editar', edit_post_path(id: post.id), class: 'btn' %>
+                            <%= link_to 'Deletar', post_path(id: post.id), method: :delete, class: 'btn' %>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+</div>
