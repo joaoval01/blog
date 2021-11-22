@@ -1,48 +1,79 @@
 class PostsController < ApplicationController
+
     def index
         @posts = Post.order(:name)
+        @users = User.order(:email)
     end
 
     def new
         @post = Post.new
-        @users = User.order(:email)
-    end
-
-    def edit
-        @post = Post.find(params[:id])
-        @users = User.order(:email)
+        get_variables
     end
 
     def create
         @post = Post.new(post_params)
+        @post.user_id = current_user.id
+        get_variables
 
         if @post.save
+            if params[:category_ids].present?
+                params[:category_ids].each do |id|
+                    PostCat.create(post_id: @post.id, category_id: id)
+                end
+            end
+            
             redirect_to posts_path
         else
             render :new, status: :unprocessable_entity
         end
     end
-    
-    def destroy
+
+    def edit
         @post = Post.find(params[:id])
-        if @post.present?
-            @post.destroy
-        end    
-        redirect_to posts_path
+        get_variables
     end
-    
+
     def update
         @post = Post.find(params[:id])
+        get_variables
 
         if @post.update(post_params)
-          redirect_to posts_path
+            @post_cats_delete = PostCat.where(post_id: @post.id).where('category_id NOT IN (:category_ids)', category_ids: params[:category_ids])
+            @post_cats_delete.delete_all
+
+            if params[:category_ids].present?
+                params[:category_ids].each do |id|
+                    post_cat = PostCat.where(post_id: @post.id, category_id: id)
+                    if post_cat.blank?
+                        PostCat.create(post_id: @post.id, category_id: id)
+                    end
+                end
+            else
+                @post.post_cats.destroy_all
+            end
+
+            redirect_to posts_path
         else
-          render :edit, status: :unprocessable_entity
+            render :edit, status: :unprocessable_entity
         end
     end
 
+    def destroy
+        @post = Post.find(params[:id])
+        
+        if @post.present?
+            @post.destroy 
+        end
+        redirect_to posts_path
+    end
+
     private
+    def get_variables
+        @users = User.order(:email)
+        @categories = Category.order(:name)
+        @post_cats = @post.post_cats.select(:category_id)
+    end
     def post_params
-      params.require(:post).permit(:name, :content, :summary, :user_id, :avatar)
+        params.require(:post).permit(:name, :summary, :content, :image)
     end
 end

@@ -1,11 +1,18 @@
 <div style='height: 1000px'>
     <div class="w-100% justify-content-center">
         <%= form_with  model: @post do |form| %>
-            <%= form.text_field :name, class:'form-control m-20' %>
-            <%= form.text_area :summary, class:'form-control' %>
-            <%= form.text_area :content, class:'form-control' %>
-            <%= form.select(:user_id, @users.collect {|user| [user.email, user.id]}, prompt: 'select') %>
+            <%= form.text_field :name, class:'form-control m-20', :maxlength => 45 %>
+            <%= form.text_area :summary, class:'form-control', :maxlength => 100 %>
+            <%= form.text_area :content, class:'form-control', :maxlength => 500 %>
             <%= form.file_field :image %>
+            <ul>
+                <% @categories.each do |category| %>
+                    <li>
+                        <%= check_box_tag 'category_ids[]', category.id, @post_cats.filter { |a| a.category_id == category.id }.present? -%>
+                        <%= h category.name -%>
+                    </li>
+                <% end %>
+            </ul>
             <%= form.submit 'Salvar', class:'btn' %>
             <%= link_to 'Cancelar', posts_path, class:'btn' %>
         <% end %>

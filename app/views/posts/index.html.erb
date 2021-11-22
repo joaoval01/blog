@@ -18,6 +18,7 @@
                             <h6 class="mb-0 text-sm"><%= post.name %></h6><h6 class="mb-0 text-sm"><%= post.user.email %></h6>
                             <%= link_to 'Editar', edit_post_path(id: post.id), class: 'btn' %>
                             <%= link_to 'Deletar', post_path(id: post.id), method: :delete, class: 'btn' %>
+                            <%= image_tag post.image.variant(resize_to_limit: [100, 100]) %>
                         </div>
                     </div>
                     </td>
