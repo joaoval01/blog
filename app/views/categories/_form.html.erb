@@ -1,6 +1,6 @@
 <%= form_with  model: @category do |form| %>
     <%= form.text_field :name, class:'form-control', :maxlength => 20 %>
-    <%= form.text_area :description, class:'form-control', :maxlength => 300 %>
+    <%= form.text_area :description, class:'form-control', :maxlength => 250 %>
     <%= form.submit 'Salvar', class:'btn' %>
     <%= link_to 'Cancelar', categories_path, class:'btn' %>
 <% end %>
