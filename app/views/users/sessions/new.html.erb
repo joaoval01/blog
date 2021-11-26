@@ -1,11 +1,10 @@
 <div class="d-flex flex-column container-fluid aling-items-center">
   <div class="card card-plain">
     <div class="card-header">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <h4 class="font-weight-bolder">Entrar</h4>
+        <h4 class="font-weight-bolder">Entrar</h4>
     </div>
     <div class="card-body">
-      <form role="form">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="input-group input-group-outline mb-3">
           <div class="field align-items-center">
             <%= f.label :email %><br/>
@@ -25,13 +24,12 @@
               <%= f.label :remember_me %>
             </div>
           <% end %>
-          <%= render "users/shared/links" %>
         </div>
           <div class="actions">
-            <%= f.submit "Log in", class: 'btn bg-gradient-secondary btn-sm w-50px h-20px' %>
+            <%= f.submit "Log in", class: 'btn bg-gradient-secondary  w-50px h-20px' %>
         </div>
-      </form>
       <% end %>
+        <%#= render "users/shared/links" %>
     </div>
   </div>
 </div>

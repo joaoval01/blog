@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
+    before_action :authenticate_user!, except: [:show]
     load_and_authorize_resource
-    before_action :authenticate_user!
     def index
         @posts = Post.order(:name)
         @users = User.order(:email)
@@ -57,6 +57,10 @@ class PostsController < ApplicationController
         else
             render :edit, status: :unprocessable_entity
         end
+    end
+
+    def show
+        @post = Post.find(params[:id])
     end
 
     def destroy
