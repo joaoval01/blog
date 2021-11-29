@@ -4,6 +4,9 @@ class PostsController < ApplicationController
     def index
         @posts = Post.order(:name)
         @users = User.order(:email)
+        if current_user && current_user.admin?
+            render :layout => "admin"
+        end
     end
 
     def new

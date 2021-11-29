@@ -3,6 +3,9 @@ class RolesController < ApplicationController
     load_and_authorize_resource
     def index
         @roles = Role.order(:username)
+        if current_user && current_user.admin?
+            render :layout => "admin"
+        end
     end
 
     def new

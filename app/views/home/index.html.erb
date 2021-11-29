@@ -2,7 +2,7 @@
     <!-- início -->
   <section class="py-5 text-center container">
     <div class="row py-lg-7">
-      <div class="col-lg-5 col-md-8 mx-auto">
+      <div class="col-lg-5 col-md-3 mx-auto">
         <h1 class='text-light' style='font-family: Source Code Pro'>blog do jao</h1>
         <p class="lead text-muted font-monospace" style='font-size: 15px'>A label is a graphical control element which displays text on a form. ... A label is generally used to identify a nearby text box or other widget.</p>
       </div>
@@ -10,13 +10,13 @@
   </section>
     <!-- acabou o inicio -->
     <!-- postagens -->
-  <div class="album py-2 bg-secondary m-auto">
+  <div class="album py-2 m-auto">
     <div class="container my-5">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <% @posts.each do |post|%>
          <div class="col">
           <div class="card shadow-sm">
-            <%= image_tag post.image, style: 'height:20vw;margin-bottom:20px;' %>
+            <%= image_tag post.image, class: 'rounded',style: 'height:20vw;margin-bottom:20px;' %>
             <div class="card-body">
               <p class="card-text"><%= post.summary %></p>
               <div class="d-flex justify-content-between align-items-center">
