@@ -1,0 +1,11 @@
+<main class="flex-shrink-0">
+  <div class="container">
+    <h1 class="text-white"><%= @post.name %></h1>
+    <div>
+        <pre class="text-light  ">
+            <%= @post.content  %>
+        </pre>
+          <%= image_tag @post.image, class:"rounded" %>
+    </div>
+  </div>
+</main>

@@ -27,42 +27,42 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
-  <body class="bg-dark">   
-
-   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-      <div class="container-fluid py-1 px-0">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-          <% if current_user %>
-            <%= link_to 'editar perfil', edit_user_registration_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
-            <%=  link_to 'sair', destroy_user_session_path, method: :delete, class: "text-bold breadcrumb-item text-sm text-white active "%>
-          <% else %>
-            <%=  link_to "entrar", new_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
-            <%=  link_to "cadastre-se", new_user_registration_path,class: "text-bold breadcrumb-item text-sm text-white active" %>
-          <% end %>
-          </ol>
-          <h6> <%= link_to "home", root_path, class: "d-sm-inline d-none text-light text-bold" %> </h6>  
-       </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-          </div>
-          <ul class="navbar-nav  justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-            <% if current_user %>
-              <i class="fas fa-user me-sm-2" aria-hidden=true></i>
-              <span class="text-white text-bold"> <%= current_user.email %> </span>
-            <% end %>
-          </ul>
+<body class="bg-dark">   
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+  <nav class="navbar navbar-expand-lg top-0 z-index-3 shadow start-0" id="navbarBlur" navbar-scroll="true">
+    <div class="container-fluid py-1 px-0">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <% if current_user %>
+          <%= link_to 'editar perfil', edit_user_registration_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
+          <%=  link_to 'sair', destroy_user_session_path, method: :delete, class: "text-bold breadcrumb-item text-sm text-white active "%>
+        <% else %>
+          <%=  link_to "entrar", new_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
+          <%=  link_to "cadastre-se", new_user_registration_path,class: "text-bold breadcrumb-item text-sm text-white active" %>
+        <% end %>
+        </ol>
+        <h6> <%= link_to "home", root_path, class: "d-sm-inline d-none text-light text-bold" %> </h6>  
+      </nav>
+      <% if current_user && current_user.admin? %>
+          <%=  link_to "posts", posts_path,class: "text-bold btn text-white active" %>
+          <%=  link_to "roles", roles_path,class: "text-bold btn text-white active" %>
+          <%=  link_to "categories", categories_path,class: "text-bold btn text-white active" %>
+        <% end %>
+      <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
         </div>
+        <ul class="navbar-nav  justify-content-end">
+          <li class="nav-item d-flex align-items-center">
+          <% if current_user %>
+            <i class="fas fa-user me-sm-2" aria-hidden=true></i>
+            <span class="text-white text-bold"> <%= current_user.email %> </span>
+          <% end %>
+        </ul>
       </div>
-    </nav>
-    <%= yield %>
-    <footer class="bg-dark d-flex flex-wrap justify-content-center aling-items-center text-center  border-top mt-5">
-      <div class="d-flex row">
-        <span class="text-muted" style="font-family: Source Code Pro">blog do jao</span>
-        <span class="text-muted" style="font-family: Source Code Pro">2021</span>
-      </div>
-    </footer>
-  </body>
+    </div>
+  </nav>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</body>
 </html>
+

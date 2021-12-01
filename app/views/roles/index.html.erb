@@ -1,29 +1,39 @@
-<div class="card-body px-0 pb-2">
-    <div class="table-responsive p-0">
-        <table class="table align-items-center justify-content-center mb-0">
-            <thead>
-                <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Role</th>
-                <%= link_to new_role_path, class: 'btn' do %>
-                    novo
-                <% end %>
-                </tr> 
-            </thead>
-            <tbody>
-            <% @roles.each do |role| %>
-                <tr>
-                    <td>
-                    <div class="d-flex px-2">
-                        <div class="my-auto">
-                            <h6 class="mb-0 text-sm"><%= role.username %></h6>
-                            <%= link_to 'Editar', edit_role_path(id: role.id), class: 'btn' %>
-                            <%= link_to 'Deletar', role_path(id: role.id), method: :delete, class: 'btn' %>
-                        </div>
-                    </div>
-                    </td>
-                </tr>
-            <% end %>
-            </tbody>
-        </table>
+<div class="col-11 m-auto">
+  <div class="card my-4">
+    <div class=" p-0 mt-n4 mx-3 z-index-2">
+      <div class="bg-gradient-secondary shadow-dark border-radius-lg pt-4 pb-3">
+        <h6 class="text-white text-capitalize ps-4">Roles</h6>
+        <a class='ms-5 text-light btn btn-primary btn-sm text-bold'href=<%= new_post_path %>>+ novo</a>
+      </div>
     </div>
+    <div class="card-body px-0 pb-2">
+      <div class="table-responsive p-0">
+        <table class="table align-items-center mb-0">
+          <tbody> 
+            <% @roles.each do |role| %>
+            <tr>
+              <td>
+                <div class="d-flex px-2 py-1">
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm"><%= role.username %></h6>
+                  </div>
+                </div>
+              </td>
+              <td class="align-middle text-center">
+                <a href=<%= edit_role_path(id: role.id) %>>
+                <span class="text-secondary text-xs font-weight-bold">Editar</span>
+                </a>
+              </td>
+              <td class="align-middle">
+                <a href=<%= role_path(id: role.id) %> data-method="delete" >
+                    <span class="text-secondary text-xs font-weight-bold">Deletar</span>
+                </a>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

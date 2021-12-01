@@ -1,36 +1,50 @@
-<div class="d-flex flex-column container-fluid aling-items-center">
-  <div class="card card-plain">
-    <div class="card-header">
-        <h4 class="font-weight-bolder">Entrar</h4>
-    </div>
-    <div class="card-body">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="input-group input-group-outline mb-3">
-          <div class="field align-items-center">
-            <%= f.label :email %><br/>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-        </div>
-        <div class="input-group input-group-outline mb-3">
-          <div class="field">
-            <%= f.label :senha %><br />
-            <%= f.password_field :password, autocomplete: "current-password" %>
-          </div>
-        </div>
-        <div class="form-check form-check-info text-start ps-0">
-          <% if devise_mapping.rememberable? %>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+
+
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<div class="container my-10">
+  <div class="row">
+    <div class="col-lg-4 col-md-8 col-12 mx-auto">
+      <div class="card z-index-0 fadeIn3 fadeInBottom">
+        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+          <div class="bg-gradient-secondary shadow-dark border-radius-lg py-3 pe-1">
+            <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Login</h4>
+            <div class="row mt-3">
+              <div class="col-2 text-center ms-auto">
+                <a class="btn btn-link px-3" href="javascript:;">
+                  <i class="fa fa-facebook text-white text-lg" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div class="col-2 text-center px-1">
+                <a class="btn btn-link px-3" href="javascript:;">
+                  <i class="fa fa-github text-white text-lg" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div class="col-2 text-center me-auto">
+                <a class="btn btn-link px-3" href="javascript:;">
+                  <i class="fa fa-google text-white text-lg" aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
-          <% end %>
+          </div>
         </div>
-          <div class="actions">
-            <%= f.submit "Log in", class: 'btn bg-gradient-secondary  w-50px h-20px' %>
+        <div class="card-body">
+          <form role="form" class="text-start">
+            <div class="input-group input-group-outline my-3">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: 'e-mail' %>
+            </div>
+            <div class="input-group input-group-outline my-3">
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "password" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Log in", class: 'btn bg-gradient-secondary w-100 my-4 mb-2' %>
+            </div>
+            <%= render "users/shared/links" %>
+          </form>
         </div>
-      <% end %>
-        <%#= render "users/shared/links" %>
+      </div>
     </div>
   </div>
 </div>
-
+<% end %>

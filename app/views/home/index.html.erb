@@ -21,7 +21,7 @@
               <p class="card-text"><%= post.summary %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <%= link_to "view", post %>
+                  <%= link_to "view", home_post_path(id: post.id) %>
                 </div>
               </div>
             </div>
