@@ -2,10 +2,10 @@
 
 one:
   username: MyString
-  email: 
-  password: 
+  email: MyString
+  password: MyString
 
 two:
   username: MyString
-  email: 
-  password: 
+  email: MyString
+  password: MyString

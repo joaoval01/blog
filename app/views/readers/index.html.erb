@@ -2,30 +2,30 @@
   <div class="card my-4">
     <div class=" p-0 mt-n4 mx-3 z-index-2">
       <div class="bg-gradient-secondary shadow-dark border-radius-lg pt-4 pb-3">
-        <h6 class="text-white text-capitalize ps-4"><i class="fas fa-clipboard-list me-sm-1"></i>Categories</h6>
-        <a class='ms-5 text-light btn btn-primary btn-sm text-bold'href=<%= new_post_path %>>+ novo</a>
+        <h6 class="text-white text-capitalize ps-4"><i class="fab fa-accessible-icon me-sm-1"></i>Reader</h6>
+        <a class='ms-5 text-light btn btn-primary btn-sm text-bold'href=<%= new_reader_path %>>+ novo</a>
       </div>
     </div>
     <div class="card-body px-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
-          <tbody> 
-            <% @categories.each do |category| %>
+          <tbody>
+            <% @readers.each do |reader| %>
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm"><%= category.username %></h6>
+                    <h6 class="mb-0 text-sm"><%= reader.username %></h6>
                   </div>
                 </div>
               </td>
               <td class="align-middle text-center">
-                <a href=<%= edit_category_path(id: category.id) %>>
+                <a href=<%= edit_role_path(id: reader.id) %>>
                 <span class="text-secondary text-xs font-weight-bold">Editar</span>
                 </a>
               </td>
               <td class="align-middle">
-                <a href=<%= category_path(id: category.id) %> data-method="delete" >
+                <a href=<%= role_path(id: reader.id) %> data-method="delete" >
                     <span class="text-secondary text-xs font-weight-bold">Deletar</span>
                 </a>
               </td>
