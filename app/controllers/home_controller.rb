@@ -7,12 +7,11 @@ class HomeController < ApplicationController
         @post = Post.find(params[:id]) 
         @comment = Comment.new
         @comment_son = Comment.new
-        
-        @comments = Comment.where(post_id: @post.id).where(comment_id: nil)
+        @comments = Comment.where(post_id: @post.id).where(comment_id: nil).order(created_at: :desc)
 
+        #evaluations
         @evaluation = Evaluation.new
         @evaluations = Evaluation.where(post_id: @post.id)
-
         if @evaluations.present?
             @value_median = evaluation_media(@evaluations)
         end
@@ -23,7 +22,7 @@ class HomeController < ApplicationController
         i = 0
         evaluation.each do |e|
             value += e.value
-            i += 1
+            i += 1.0
         end
         return value / i
     end

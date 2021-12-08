@@ -1,5 +1,5 @@
 <% @comments.each do |comment| %>
-    <% if current_user.id == comment.user_id %>
+    <% if current_user && current_user.id == comment.user_id %>
         <%= link_to 'deletar', comment_path(comment),  method: :delete, remote: true %> 
     <% end %>
     <br>
@@ -7,7 +7,7 @@
     <br>
     <%= comment.description %>
     <hr>
-    <%= form_with model: @comment_son, local: false, :html => {:id => 'coment_form'}  do |form| %>
+    <%= form_with model: @comment_son, local: false do |form| %>
         <%= form.hidden_field :post_id, value: comment.post_id %>
         <%= form.hidden_field :comment_id, value: comment.id %>
         <%= form.text_area :description, class:'form-control', :maxlength => 100 %>

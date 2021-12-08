@@ -2,14 +2,19 @@
   <div class="container">
     <h1 class="text-white"><%= @post.name %></h1>
     <div>
+        <div id='lista-evaluation'>
+          <%= @value_median %>
+          <% if current_user && current_user.evaluations == nil %>
+            <%= form_with model: @evaluation, local: false, :html => {:id => 'evaluation_form'}  do |form| %>
+              <%= form.hidden_field :post_id, value: @post.id%>
+              <%= form.select :value, options_for_select(0..5), { prompt: "Avaliação foda" } %>
+              <%= form.submit 'Salvar', class:'btn' %>
+            <% end %>
+          <% end %>
+        </div>
         <pre class="text-light  ">
             <%= @post.content  %>
         </pre>
-        <%= form_with model: @evaluation, local: false, :html => {:id => 'evaluation_form'}  do |form| %>
-            <%= form.hidden_field :post_id, value: @post.id%>
-            <%= form.select :value, options_for_select(0..5), { prompt: "Avaliação foda" } %>
-            <%= form.submit 'Salvar', class:'btn' %>
-        <% end %>
           <%= image_tag @post.image, class:"rounded" %>
 
           <%= form_with model: @comment, local: false, :html => {:id => 'comment_form'}  do |form| %>
@@ -18,9 +23,8 @@
             <%= form.submit 'Salvar', class:'btn' %>
           <% end %>
           <div id='lista-comentarios'>
-            <%= render 'comments', comments: @comments_null %>
+            <%= render 'comments', comments: @comments %>
           </div>
-          <%= @value_median %>
     </div>
   </div>
 </main>

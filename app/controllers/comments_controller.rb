@@ -5,14 +5,13 @@ class CommentsController < ApplicationController
     end
 
     def create
+        @comment_son = Comment.new
         @comment = Comment.new(comment_params)
         @comment.user_id = current_user.id   
-        
-
         if @comment.save
+            @comments = Comment.where(post_id: @comment.post_id).where(comment_id: nil).order(created_at: :desc)
             respond_to do |format|
                 format.js
-                @comments = Comment.where(post_id: @comment.post_id).order(:created_at)
             end
         else
             render :new, status: :unprocessable_entity
@@ -21,12 +20,10 @@ class CommentsController < ApplicationController
 
     def destroy
         @comment = Comment.find(params[:id])
-        
+        @comments = Comment.where(post_id: @comment.post_id).where(comment_id: nil).order(created_at: :desc)        
         if @comment.destroy
             respond_to do |format|
                 format.js
-                @comments = Comment.all.order(:created_at)
-                @comments_null = Comment.all.select { |comment| !(comment.comment_id.present?) } 
             end
         end
     end

@@ -9,10 +9,14 @@ class EvaluationsController < ApplicationController
         
 
         if @evaluation.save
-            print('ok')
+            respond_to do |format|
+                format.js
+            end
         else
             render :new, status: :unprocessable_entity
         end
+        @evaluations = Evaluation.where(post_id: @evaluation.post_id)
+
     end
 
     def destroy

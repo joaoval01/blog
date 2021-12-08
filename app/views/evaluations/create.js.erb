@@ -1,1 +1,1 @@
-$('#lista-evaluation').html("<%= escape_javascript(render partial: 'home/post', :comments => @evaluation) %>")
+$('#lista-evaluation').html("<%= j(render partial: 'home/evaluations', :evaluations => @evaluations) %>")
