@@ -26,9 +26,9 @@ class PostsController < ApplicationController
             end
             
             redirect_to posts_path
-        else
-            render :new, status: :unprocessable_entity
-        end
+            else
+                render :new, status: :unprocessable_entity
+            end
     end
 
     def edit

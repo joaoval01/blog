@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_02_180818) do
+ActiveRecord::Schema.define(version: 2021_12_07_195458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,12 +51,13 @@ ActiveRecord::Schema.define(version: 2021_12_02_180818) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "description"
-    t.bigint "user_id", null: false
-    t.bigint "user_owner"
     t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "comment_id"
+    t.index ["comment_id"], name: "index_comments_on_comment_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -65,6 +66,16 @@ ActiveRecord::Schema.define(version: 2021_12_02_180818) do
     t.string "username", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.integer "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_evaluations_on_post_id"
+    t.index ["user_id"], name: "index_evaluations_on_user_id"
   end
 
   create_table "post_cats", force: :cascade do |t|
@@ -117,8 +128,11 @@ ActiveRecord::Schema.define(version: 2021_12_02_180818) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "comments"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "evaluations", "posts"
+  add_foreign_key "evaluations", "users"
   add_foreign_key "post_cats", "categories"
   add_foreign_key "post_cats", "posts"
   add_foreign_key "posts", "users"
