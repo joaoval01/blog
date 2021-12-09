@@ -1,7 +1,5 @@
+<div class='bg-light'>
 <% @comments.each do |comment| %>
-    <% if current_user && current_user.id == comment.user_id %>
-        <%= link_to 'deletar', comment_path(comment),  method: :delete, remote: true %> 
-    <% end %>
     <br>
     <%= comment.user.email %>
     <br>
@@ -20,3 +18,4 @@
         <hr>
     <% end %>
 <% end %>
+</div>

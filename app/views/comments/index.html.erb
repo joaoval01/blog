@@ -2,31 +2,24 @@
   <div class="card my-4">
     <div class=" p-0 mt-n4 mx-3 z-index-2">
       <div class="bg-gradient-secondary shadow-dark border-radius-lg pt-4 pb-3">
-        <h6 class="text-white text-capitalize ps-4"><i class="fas fa-file-word me-sm-1"></i>Posts</h6>
+        <h6 class="text-white text-capitalize ps-4"><i class="fas fa-file-word me-sm-1"></i>Comentários</h6>
       </div>
     </div>
     <div class="card-body px-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
           <tbody> 
-            <% @users.each do |user| %>
+            <% @comments.each do |comment| %>
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm"><%= user.email %></h6>
+                    <h6 class="mb-0 text-sm"><%= comment.post.name %></h6>
                   </div>
                 </div>
               </td>
-              <td class="align-middle text-center">
-                <a href=<%= edit_user_registration_path(id: user.id) %>>
-                <span class="text-secondary text-xs font-weight-bold">Editar</span>
-                </a>
-              </td>
               <td class="align-middle">
-                <a href=<%= user_registration_path(user)%> data-method="delete" >
-                    <span class="text-secondary text-xs font-weight-bold">Deletar</span>
-                </a>
+                <%= link_to 'Deletar', comment_path(comment),  method: :delete, remote: true, class: 'text-secondary text-xs font-weight-bold' %> 
               </td>
             </tr>
             <% end %>

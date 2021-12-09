@@ -1,4 +1,12 @@
 class CommentsController < ApplicationController
+    before_action :authenticate_user!, except: [:show]
+    load_and_authorize_resource
+    layout "admin"
+
+    def index
+        @comments = Comment.order(created_at: :desc)
+    end
+
 
     def new
         @comment = Comment.new
@@ -22,9 +30,7 @@ class CommentsController < ApplicationController
         @comment = Comment.find(params[:id])
         @comments = Comment.where(post_id: @comment.post_id).where(comment_id: nil).order(created_at: :desc)        
         if @comment.destroy
-            respond_to do |format|
-                format.js
-            end
+            redirect_to comments_path
         end
     end
 

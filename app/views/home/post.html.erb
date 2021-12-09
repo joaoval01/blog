@@ -15,7 +15,7 @@
         <pre class="text-light  ">
             <%= @post.content  %>
         </pre>
-          <%= image_tag @post.image, class:"rounded" %>
+          <%= image_tag @post.image, style: 'height:20vw;width:100vw;margin-bottom:20px;' %>
 
           <%= form_with model: @comment, local: false, :html => {:id => 'comment_form'}  do |form| %>
             <%= form.hidden_field :post_id, value: @post.id%>
@@ -28,3 +28,5 @@
     </div>
   </div>
 </main>
+
+
