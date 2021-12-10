@@ -18,11 +18,11 @@
                         <%= form.password_field :password_confirmation, class: 'form-control', placeholder: 'password again' %>  
                     </div>
                     <div class="input-group input-group-outline mb-3">
-                        <%= form.select :role_id, options_for_select([['Admin', 1], ['Comentarista', 2], ['Leitor', 3]]), :selected => :option %>
+                        <%= form.select :role_id, options_for_select([['Admin', 1], ['Comentarista', 2], ['Leitor', 3]]), :prompt => 'selecione um' %>
                     </div>
                     <div class="text-center">
-                        <%= form.submit 'Salvar', class:'btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0' %>
-                        <%= link_to 'Cancelar', users_path, class:'btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0' %>
+                        <%= form.submit 'Salvar', class:'btn btn-lg bg-gradient-secondary btn-lg w-100 mt-4 mb-0' %>
+                        <%= link_to 'Cancelar', users_path, class:'btn btn-lg bg-gradient-secondary btn-lg w-100 mt-4 mb-0' %>
                     </div>
                     <% end %>
                 </div>
@@ -30,3 +30,6 @@
         </div>
     </div>
 </div>
+
+
+

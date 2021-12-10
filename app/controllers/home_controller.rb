@@ -12,19 +12,10 @@ class HomeController < ApplicationController
         #evaluations
         @evaluation = Evaluation.new
         @evaluations = Evaluation.where(post_id: @post.id)
-        if @evaluations.present?
-            @value_median = evaluation_media(@evaluations)
+        @value_median = Evaluation.where(post_id: @post.id).average('value')
+
+        if current_user
+            @rate = Evaluation.where(post_id: @post.id).where(user_id: current_user.id)
         end
     end
-
-    def evaluation_media(evaluation)
-        value = 0
-        i = 0
-        evaluation.each do |e|
-            value += e.value
-            i += 1.0
-        end
-        return value / i
-    end
-
 end
