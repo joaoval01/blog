@@ -4,7 +4,15 @@ class PostsController < ApplicationController
     layout "admin"
 
     def index
-        @posts = Post.order(:name)
+        @posts = Post.select('posts.id, posts.name, AVG(evaluations.value) as media')
+                     .joins("LEFT JOIN evaluations ON evaluations.post_id = posts.id")
+                     .group("posts.id")
+                     .order(created_at: :desc)
+
+                    end
+                    @users = User.order(:email)
+
+    def new
         @users = User.order(:email)
     end
 
