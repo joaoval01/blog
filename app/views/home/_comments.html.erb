@@ -1,21 +1,31 @@
-<div class='bg-light'>
-<% @comments.each do |comment| %>
-    <br>
-    <%= comment.user.email %>
-    <br>
-    <%= comment.description %>
-    <hr>
-    <%= form_with model: @comment_son, local: false do |form| %>
-        <%= form.hidden_field :post_id, value: comment.post_id %>
-        <%= form.hidden_field :comment_id, value: comment.id %>
-        <%= form.text_area :description, class:'form-control', :maxlength => 100 %>
-        <%= form.submit 'Salvar', class:'btn' %>
-    <% end %>
-    <% comment.comments.each do |humm|%>
-        <%= humm.user.email %>
+<div>
+    <div class='mx-4 my-4'>
+        <% @comments.each do |comment| %>
         <br>
-        <%= humm.description %>
+        <span class='text-bold'>User: </span><%= comment.user.email %>
+        <br>
+        <div class='mx-3'><%= comment.description %></div>
+    <div class='rounded-top'>
+        <div class='mx-5'>
+            <% if current_user %>
+                <%= form_with model: @comment_son, local: false do |form| %>
+                    <%= form.hidden_field :post_id, value: comment.post_id %>
+                    <%= form.hidden_field :comment_id, value: comment.id %>
+                    <%= form.text_field :description, class:'form-control', :maxlength => 100, placeholder: 'comente aqui'%>
+                    <%= form.submit 'Salvar', class:'btn' %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+    <div class='mx-6'>
+        <% comment.comments.each do |humm|%>
+            <span class='text-bold'>User: </span><%= comment.user.email %>
+            <br>
+            <div class='mx-3'><%= humm.description %></div>
+            <hr>
+                <% end %>
+            </div>
+        <% end %>
         <hr>
-    <% end %>
-<% end %>
+    </div>
 </div>

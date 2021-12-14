@@ -6,7 +6,8 @@
                     <h4 class="font-weight-bolder">Editar</h4>
                 </div>
                 <div class="card-body bg-white rounded-bottom">
-                    <%= form_for @user, url: user_create_path, method: :post do |form| %>
+                    <%= form_for @user, url: user_update_path, method: :post do |form| %>
+                        <%= form.hidden_field :id, value: @user.id%>
                         <div class="input-group input-group-outline mb-3">
                             <%= form.text_field :email, class:'form-control', placeholder: 'email', :maxlength => 20 %>
                         </div>

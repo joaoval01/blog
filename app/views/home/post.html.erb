@@ -1,33 +1,106 @@
-<div class="jumbotron text-light">
-    <div class="container">
-      <h1 class="display-3 text-light"><%= @post.name %></h1>
-      <p><%= @post.summary %> </p>
-    </div>
-  </div>
+<div class="container">
+  <div class="posts-container mx-auto px-3 my-5">
+    <div class="posts">
+      <div class="post">
+        <h1 class="post-title fw-500 text-light text-bold">
+          <%= @post.name %>
+        </h1>
+        <div class="d-flex align-items-center text-muted text-decoration-none">
+          <span class='text-white'><span class='text-bold'>User: </span> <%= @post.user.email %></span>
+        </div>
+        <div>
+          <p class='text-white responsive'><span class='text-bold'>Summary:</span> <%= @post.summary %></p>
+        </div>
+        <div class='text-center'> 
+          <%= image_tag @post.image, style: 'height:25vw;width:50vw;margin-bottom:20px;' %>
+        </div>
+        <div class='mx-7 my-5 text-center text-light'>
+          <%= @post.content %>
+        </div>
 
+        
+        
+        
+        <div class='text-white my-4 text-center'>
+          <%= @value_median.to_i %>
+        </div>
 
-<%= @value_median %>
-          <% if current_user && @rate == [] %>
-            <%= form_with model: @evaluation, local: false, :html => {:id => 'evaluation_form'}  do |form| %>
-              <%= form.hidden_field :post_id, value: @post.id%>
-              <%= form.select :value, options_for_select(0..5), { prompt: "Avaliação foda" } %>
-              <%= form.submit 'Salvar', class:'btn' %>
+        <div class='m-5 text-center'>
+            <% if current_user %>
+              <%= form_with model: @evaluation do |form| %>
+                <%= form.hidden_field :post_id, value: @post.id %>
+                  <% (1..5).each do |i| %>
+                  <%= form.label :value, for: "evaluation_value_#{i.to_i}" do %>
+                    <i class="far fa-star" id="<%= i %>star"></i>
+                  <% end %>
+                  <%= form.radio_button :value, i.to_i, class: "d-none" %>
+                <% end %>
+                  <br>
+                  <%= form.submit "Rate", class: 'btn'%>
             <% end %>
           <% end %>
         </div>
-        <%= image_tag @post.image, style: 'height:20vw;width:100vw;margin-bottom:20px;' %>
-        <div class='bg-light'>
-          <%= form_with model: @comment, local: false, :html => {:id => 'comment_form'}  do |form| %>
-          <%= form.hidden_field :post_id, value: @post.id%>
-          <%= form.text_area :description, class:'form-control', :maxlength => 100 %>
-          <%= form.submit 'Salvar', class:'btn' %>
-        <% end %>
-        </div>
-        <div id='lista-comentarios'>
-          <%= render 'comments', comments: @comments %>
-        </div>
+
+        <div class="mx-6 bg-light rounded">
+          <div class="comment-wrapper">
+            <div class="panel panel-info">
+              <div class="panel-heading mx-2"><h4> Comment panel</h4></div>
+                <div class="panel-body">
+                  <% if current_user %>
+                    <%= form_with model: @comment, local: false, :html => {:id => 'comment_form'}  do |form| %>
+                      <%= form.hidden_field :post_id, value: @post.id %>
+                      <%= form.text_field :description, class:'form-control mx-2', :maxlength => 100, placeholder: 'comente aqui' %>
+                      <%= form.submit 'Salvar', class:'btn' %>
+                    <% end %>
+                  <% end %>
+                  <hr>  
+
+            <div id='lista-comentarios'>
+                <%= render 'comments', comments: @comments %>
+            </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+</div>
 
 
-<% (1..@value_median.to_i).each do |e| %>
-  <%= image_tag @post.image, style: 'height:10vw;width:100vw;margin-bottom:20px;' %>
-<% end %>
+
+<script>
+
+  $("#1star").click(function(){
+    $("#1star").css('color', 'yellow');
+    $("#2star").css('color', 'grey');
+    $("#3star").css('color', 'grey');
+    $("#4star").css('color', 'grey');
+    $("#5star").css('color', 'grey');
+  })
+  $("#2star").click(function(){
+    $("#1star").css('color', 'yellow');
+    $("#2star").css('color', 'yellow');
+    $("#3star").css('color', 'grey');
+    $("#4star").css('color', 'grey');
+    $("#5star").css('color', 'grey');
+  })
+  $("#3star").click(function(){
+    $("#1star").css('color', 'yellow');
+    $("#2star").css('color', 'yellow');
+    $("#3star").css('color', 'yellow');
+    $("#4star").css('color', 'grey');
+    $("#5star").css('color', 'grey');
+  })
+  $("#4star").click(function(){
+    $("#1star").css('color', 'yellow');
+    $("#2star").css('color', 'yellow');
+    $("#3star").css('color', 'yellow');
+    $("#4star").css('color', 'yellow');
+    $("#5star").css('color', 'grey');
+  })
+  $("#5star").click(function(){
+    $("#1star").css('color', 'yellow');
+    $("#2star").css('color', 'yellow');
+    $("#3star").css('color', 'yellow');
+    $("#4star").css('color', 'yellow');
+    $("#5star").css('color', 'yellow');
+  })
+</script>

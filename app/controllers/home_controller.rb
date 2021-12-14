@@ -5,6 +5,8 @@ class HomeController < ApplicationController
     
     def post
         @post = Post.find(params[:id]) 
+
+        #comments
         @comment = Comment.new
         @comment_son = Comment.new
         @comments = Comment.where(post_id: @post.id).where(comment_id: nil).order(created_at: :desc)
@@ -13,9 +15,5 @@ class HomeController < ApplicationController
         @evaluation = Evaluation.new
         @evaluations = Evaluation.where(post_id: @post.id)
         @value_median = Evaluation.where(post_id: @post.id).average('value')
-
-        if current_user
-            @rate = Evaluation.where(post_id: @post.id).where(user_id: current_user.id)
-        end
     end
 end
