@@ -1,5 +1,4 @@
-"use strict";
-(function() {
+$(document).ready(function() {
   var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
   if (isWindows) {
@@ -24,7 +23,7 @@
       var ps3 = new PerfectScrollbar(fixedplugin);
     };
   };
-})();
+});
 
 // Verify navbar blur on scroll
 if (document.getElementById('navbarBlur')) {

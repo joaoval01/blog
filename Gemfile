@@ -24,8 +24,8 @@ gem 'jbuilder', '~> 2.7'
 
 # gem 'devise'
 gem 'devise'
-
-
+#JQUERY
+gem 'jquery-rails'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'

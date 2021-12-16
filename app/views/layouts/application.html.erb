@@ -3,19 +3,20 @@
   <head>
     <title>blog do jao</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
+    <link rel="shortcut icon" href="http://sstatic.net/stackoverflow/img/favicon.ico">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- fontes -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
@@ -28,9 +29,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+
+    <style>
+      @media (max-width: 992px) {
+        #imagem_cadastro {
+          display: none;
+        }
+      }
+    </style>
 </head>
-<body class='bg-dark responsive'>   
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+<body class='bg-dark'>   
   <nav class="navbar navbar-expand-lg top-0 z-index-3 shadow start-0" id="navbarBlur" navbar-scroll="true">
     <div class="container-fluid py-1 px-0">
       <nav aria-label="breadcrumb">
@@ -43,24 +51,30 @@
           <%=  link_to "cadastre-se", new_user_registration_path,class: "text-bold breadcrumb-item text-sm text-white active" %>
         <% end %>
         </ol>
-        <h6> <%= link_to "home", root_path, class: "d-sm-inline d-none text-light text-bold" %> </h6>  
+        <a class='d-sm-inline d-none text-light text-bold' href=<%= root_path %>>
+          home
+        </a>
       </nav>
-      <% if current_user && current_user.admin? %>
-          <%=  link_to "posts", posts_path,class: "text-bold btn text-white active" %>
-          <%=  link_to "roles", roles_path,class: "text-bold btn text-white active" %>
-          <%=  link_to "categories", categories_path,class: "text-bold btn text-white active" %>
-          <%= link_to "admin", users_path, class: "text-bold btn text-white active" %>
-          <%= link_to "comments", comments_path, class: "text-bold btn text-white active" %>
-
-        <% end %>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center">
         </div>
         <ul class="navbar-nav  justify-content-end">
           <li class="nav-item d-flex align-items-center">
-          <% if current_user %>
-            <i class="fas fa-user me-sm-2" aria-hidden=true></i>
-            <span class="text-white text-bold"> <%= current_user.email %> </span>
+          <% if current_user && current_user.admin? %>
+            <li class="nav-item dropdown ms-auto">
+              <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><span class='text-bold text-white'><i class="fas fa-wrench"></i> <%= current_user.email %></span></a>
+              <div class="dropdown-menu dropdown-menu-end">
+                  <a href=<%= posts_path %> class="dropdown-item">Posts</a>
+                  <a href=<%= roles_path %> class="dropdown-item">Roles</a>
+                  <a href=<%= categories_path %> class="dropdown-item">Categories</a>
+                  <a href=<%= users_path %> class="dropdown-item">Users</a>
+                  <a href=<%= comments_path %> class="dropdown-item">Comments</a>
+                  <a href=<%= evaluations_path %> class="dropdown-item">Evaluations</a>
+              </div>
+            </li>
+            
+          <% elsif current_user %>
+            <span class='text-white'><%= current_user.email %></span>
           <% end %>
         </ul>
       </div>

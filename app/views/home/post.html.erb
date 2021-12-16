@@ -9,39 +9,37 @@
           <span class='text-white'><span class='text-bold'>User: </span> <%= @post.user.email %></span>
         </div>
         <div>
-          <p class='text-white responsive'><span class='text-bold'>Summary:</span> <%= @post.summary %></p>
+          <p class='text-white'><span class='text-bold'>Summary:</span> <%= @post.summary %></p>
         </div>
         <div class='text-center'> 
           <%= image_tag @post.image, style: 'height:25vw;width:50vw;margin-bottom:20px;' %>
         </div>
-        <div class='mx-7 my-5 text-center text-light'>
+        <div class='text-center text-light'>
           <%= @post.content %>
         </div>
-
-        
-        
-        
-        <div class='text-white my-4 text-center'>
-          <%= @value_median.to_i %>
-        </div>
-
-        <div class='m-5 text-center'>
-            <% if current_user %>
-              <%= form_with model: @evaluation do |form| %>
-                <%= form.hidden_field :post_id, value: @post.id %>
-                  <% (1..5).each do |i| %>
-                  <%= form.label :value, for: "evaluation_value_#{i.to_i}" do %>
-                    <i class="far fa-star" id="<%= i %>star"></i>
+        <div id='list-rating'>
+          <div class='text-center my-5'>
+            <p class='mt-6 text-white text-bold'>Avaliações</p>
+              <% if current_user %>
+                <%= form_with model: @evaluation, local: false, remote: true do |form| %>
+                  <%= form.hidden_field :post_id, value: @post.id %>
+                    <% (1..5).each do |i| %>
+                    <%= form.label :value, for: "evaluation_value_#{i.to_i}" do %>
+                      <i class="far fa-star" id="<%= i %>star"></i>
+                    <% end %>
+                    <%= form.radio_button :value, i.to_i, class: "d-none" %>
                   <% end %>
-                  <%= form.radio_button :value, i.to_i, class: "d-none" %>
-                <% end %>
-                  <br>
-                  <%= form.submit "Rate", class: 'btn'%>
+                    <br>
+                    <%= form.submit "Rate", class: 'btn'%>
+              <% end %>
             <% end %>
-          <% end %>
+            <div id="post-evaluation" class='text-white my-2 text-center'>
+              <%= @value_median.to_i %>
+            </div>
+          </div>
         </div>
-
-        <div class="mx-6 bg-light rounded">
+        <hr>
+        <div class="bg-light rounded mt-5">
           <div class="comment-wrapper">
             <div class="panel panel-info">
               <div class="panel-heading mx-2"><h4> Comment panel</h4></div>

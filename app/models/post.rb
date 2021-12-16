@@ -14,7 +14,6 @@ class Post < ApplicationRecord
   validates_length_of :content, maximum: 500, minimum: 20
   validate :image_type
 
-
   private
 
   def image_type

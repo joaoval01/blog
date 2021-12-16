@@ -1,0 +1,18 @@
+    <%= f.radio_button :rate, i.to_i, class: "display-0", :html => {:id => 'rate-form'} %>
+<% end %>
+<%= f.hidden_field :post_id, value: @post.id %>
+<% end %>
+<div class='text-white my-4 text-center'>
+    <%= @value_median.to_i %>
+</div>
+
+
+                  <%= form.radio_button :value, i.to_i, class: "d-none" %>
+                <% end %>
+                  <br>
+                  <%= form.submit "Rate", class: 'btn'%>
+            <% end %>
+          <% end %>
+          <div class='text-white my-4 text-center'>
+            <%= @value_median.to_i %>
+        </div>

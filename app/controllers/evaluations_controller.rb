@@ -19,6 +19,8 @@ class EvaluationsController < ApplicationController
         else
             @test.update(evaluation_params)
         end
+        
+        @value_median = Evaluation.where(post_id: @evaluation.post.id).average('value')
     end
 
     def update
