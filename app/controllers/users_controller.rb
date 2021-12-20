@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        @roles = Role.order(:id)
     end
 
     def create
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
 
     def edit
         @user = User.find(params[:id])
-
+        @roles = Role.order(:id)
     end
 
 
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
 
     
         if @user.update(users_params)
-          redirect_to users_path
+          redirect_to root_path
         else
           render :edit, status: :unprocessable_entity
         end
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
     def destroy
         @user = User.find(params[:id])        
         if @user.destroy
-            redirect_to users_path
+            redirect_to root_path
         end
     end
 

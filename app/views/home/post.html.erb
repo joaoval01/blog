@@ -21,7 +21,7 @@
           <div class='text-center my-5'>
             <p class='mt-6 text-white text-bold'>Avaliações</p>
               <% if current_user %>
-                <%= form_with model: @evaluation, local: false, remote: true do |form| %>
+                <%= form_with model: @evaluation, local: false do |form| %>
                   <%= form.hidden_field :post_id, value: @post.id %>
                     <% (1..5).each do |i| %>
                     <%= form.label :value, for: "evaluation_value_#{i.to_i}" do %>

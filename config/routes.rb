@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :comments
   resources :evaluations
   devise_for :users, :controllers => { :registrations => "users/registrations", :sessions => 'users/sessions' }
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
   resources :users
 
   post '/update/user', to: 'users#update', as: 'user_update'

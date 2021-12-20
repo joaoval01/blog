@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$( document ).ready(function()  {
   var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
   if (isWindows) {
@@ -36,6 +36,7 @@ var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
+/*
 // when input is focused add focused class for style
 function focused(el) {
   if (el.parentElement.classList.contains('input-group')) {
@@ -65,7 +66,7 @@ if (document.querySelectorAll('.input-group').length != 0) {
     "onfocusout": "defocused(this)"
   }));
 }
-
+*/
 
 // Fixed Plugin
 
@@ -541,7 +542,7 @@ window.onload = function() {
 
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('focus', function(e) {
-      this.parentElement.classList.add('is-focused');
+      this.parentElement.classList.add('is-lol');
     }, false);
 
     inputs[i].onkeyup = function(e) {
@@ -556,7 +557,7 @@ window.onload = function() {
       if (this.value != "") {
         this.parentElement.classList.add('is-filled');
       }
-      this.parentElement.classList.remove('is-focused');
+      this.parentElement.classList.remove('is-lol');
     }, false);
   }
 
@@ -618,20 +619,6 @@ function toggleSidenav() {
 
 let referenceButtons = document.querySelector('[data-class]');
 
-window.addEventListener("resize", navbarColorOnResize);
-
-function navbarColorOnResize() {
-  if (window.innerWidth > 1200) {
-    if (referenceButtons.classList.contains('active') && referenceButtons.getAttribute('data-class') === 'bg-transparent') {
-      sidenav.classList.remove('bg-white');
-    } else {
-      sidenav.classList.add('bg-white');
-    }
-  } else {
-    sidenav.classList.add('bg-white');
-    sidenav.classList.remove('bg-transparent');
-  }
-}
 
 // Deactivate sidenav type buttons on resize and small screens
 window.addEventListener("resize", sidenavTypeOnResize);

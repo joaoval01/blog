@@ -3,11 +3,11 @@
   <head>
     <title>blog do jao</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -45,7 +45,7 @@
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
         <% if current_user %>
           <%= link_to 'editar perfil', edit_user_registration_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
-          <%=  link_to 'sair', destroy_user_session_path, method: :delete, class: "text-bold breadcrumb-item text-sm text-white active "%>
+          <%=  link_to 'sair', destroy_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active "%>
         <% else %>
           <%=  link_to "entrar", new_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
           <%=  link_to "cadastre-se", new_user_registration_path,class: "text-bold breadcrumb-item text-sm text-white active" %>
@@ -69,7 +69,6 @@
                   <a href=<%= categories_path %> class="dropdown-item">Categories</a>
                   <a href=<%= users_path %> class="dropdown-item">Users</a>
                   <a href=<%= comments_path %> class="dropdown-item">Comments</a>
-                  <a href=<%= evaluations_path %> class="dropdown-item">Evaluations</a>
               </div>
             </li>
             
