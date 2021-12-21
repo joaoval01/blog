@@ -8,6 +8,14 @@
     <div class="card-body px-0 pb-2">
       <div class="table-responsive p-0">
         <table class="table align-items-center mb-0">
+          <thead> 
+            <tr>
+              <th>Post</th>
+              <th>Comentário</th>
+              <th>Comentário Pai</th>
+              <th></th>
+            </tr>
+          </thead> 
           <tbody> 
             <% @comments.each do |comment| %>
             <tr>
@@ -18,8 +26,22 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div class="d-flex px-2 py-1">
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm"><%= comment.description %></h6>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex px-2 py-1">
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm"><%= comment&.comment&.description %></h6>
+                  </div>
+                </div>
+              </td>
               <td class="align-middle">
-                <%= link_to 'Deletar', comment_path(comment),  method: :delete, remote: true, class: 'text-secondary text-xs font-weight-bold' %> 
+                <%= link_to 'Deletar', comment_path(comment),  method: :delete, class: 'text-secondary text-xs font-weight-bold' %> 
               </td>
             </tr>
             <% end %>

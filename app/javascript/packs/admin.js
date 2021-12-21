@@ -3,9 +3,8 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 //= require jquery
-//= require jquery.turbolinks 
 //= require jquery_ujs
-
+//= require turbolinks
 
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
@@ -18,5 +17,4 @@ var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
 
-//= require turbolinks
 import("../material-dashboard")
