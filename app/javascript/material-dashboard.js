@@ -1,7 +1,4 @@
 var ready;
-ready = function() {
-   $('#nav').localScroll({duration:800});
-};
 
 $(document).ready(ready);
 $(document).on('page:load', ready);

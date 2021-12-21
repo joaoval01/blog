@@ -2751,16 +2751,11 @@ textarea.form-control-lg {
     color: #000;
     background-color: #7b809a;
     border-color: #7b809a; }
-  .btn-check:focus + .btn-outline-secondary, .btn-outline-secondary:focus {
-    box-shadow: 0 0 0 0.2rem rgba(123, 128, 154, 0.5); }
   .btn-check:checked + .btn-outline-secondary,
   .btn-check:active + .btn-outline-secondary, .btn-outline-secondary:active, .btn-outline-secondary.active, .btn-outline-secondary.dropdown-toggle.show {
     color: #000;
     background-color: #7b809a;
     border-color: #7b809a; }
-    .btn-check:checked + .btn-outline-secondary:focus,
-    .btn-check:active + .btn-outline-secondary:focus, .btn-outline-secondary:active:focus, .btn-outline-secondary.active:focus, .btn-outline-secondary.dropdown-toggle.show:focus {
-      box-shadow: 0 0 0 0.2rem rgba(123, 128, 154, 0.5); }
   .btn-outline-secondary:disabled, .btn-outline-secondary.disabled {
     color: #7b809a;
     background-color: transparent; }

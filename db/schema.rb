@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2021_12_07_195458) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name", limit: 5, null: false
+    t.string "name", null: false
     t.text "description", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
