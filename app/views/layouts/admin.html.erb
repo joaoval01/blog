@@ -68,7 +68,6 @@
       <div class="container-fluid py-1 px-0">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <%= link_to 'editar perfil', edit_user_registration_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
             <%=  link_to 'sair', destroy_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active "%>
           </ol>
           <h6> <%= link_to "home", root_path, class: "d-sm-inline d-none text-light text-bold" %> </h6>  
@@ -88,7 +87,6 @@
           <ul class="navbar-nav  justify-content-end mx-2">
             <li class="nav-item d-flex align-items-center">
               <span class="text-white text-bold"> <%= current_user.email %> </span>
-              
           </ul>
         </div>
       </div>

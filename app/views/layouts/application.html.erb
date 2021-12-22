@@ -44,7 +44,9 @@
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
         <% if current_user %>
-          <%= link_to 'editar perfil', edit_user_registration_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
+          <% if !(current_user.admin?) %>
+            <%= link_to 'editar perfil', edit_user_registration_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
+          <% end %>
           <%=  link_to 'sair', destroy_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active "%>
         <% else %>
           <%=  link_to "entrar", new_user_session_path, class: "text-bold breadcrumb-item text-sm text-white active" %>
