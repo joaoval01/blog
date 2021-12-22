@@ -24,7 +24,9 @@ class UsersController < ApplicationController
     def update
         @user = User.where(id: users_params[:id])
 
-    
+        if @user.role_id == 1
+            redirect_to root_path
+        end
         if @user.update(users_params)
           redirect_to root_path
         else
@@ -34,7 +36,10 @@ class UsersController < ApplicationController
 
 
     def destroy
-        @user = User.find(params[:id])        
+        @user = User.find(params[:id])  
+        if @user.role_id == 1
+            redirect_to root_path
+        end      
         if @user.destroy
             redirect_to root_path
         end
