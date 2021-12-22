@@ -28,16 +28,16 @@
         <div class="card-body">
           <form role="form" class="text-start">
             <div class="input-group input-group-outline my-3">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'email' %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'email', class: "form-control" %>
             </div>
             <div class="input-group input-group-outline my-3">
-              <%= f.password_field :password, autocomplete: "new-password", placeholder: 'new-password' %>
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: 'new-password', class: "form-control" %>
             </div>
             <div class="input-group input-group-outline my-3">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'password-confimation' %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: 'password-confimation' %>
             </div>
             <div class='input-group input-group-outline my-3'>
-              <%= f.password_field :current_password, autocomplete: "current-password", placeholder: 'current password' %>
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: 'current password' %>
             </div>
             <div class="actions">
               <%= f.submit "Update", class: 'btn bg-gradient-secondary w-100 my-4 mb-2' %>
